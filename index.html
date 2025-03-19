@@ -5,92 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume</title>
     <style>
-        /* General styles for all devices */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    color: #fff;
-}
-
-/* Main container */
-.container {
-    width: 60%;
-    margin: 50px auto;
-    background: #111;
-    padding: 30px;
-    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    border-left: 5px solid white;
-}
-
-/* Sections */
-.section {
-    padding: 20px;
-    background: #222;
-    border-left: 4px solid white;
-    border-radius: 8px;
-}
-
-/* Adjust for smaller screens */
-@media screen and (max-width: 768px) {
-    .container {
-        width: 90%;
-        margin: 20px auto;
-        padding: 20px;
-    }
-
-    .header h1 {
-        font-size: 28px;
-    }
-
-    .contact-info {
-        font-size: 14px;
-    }
-
-    .section {
-        padding: 15px;
-    }
-
-    .popup {
-        font-size: 14px;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.section {
-    margin: 30px 0;
-    padding: 20px;
-    background: #222;
-    border-left: 4px solid #fff;
-    border-radius: 8px;
-    position: relative;
-    cursor: pointer;
-    opacity: 0; /* Initially hidden */
-    transform: translateX(-50px);
-    animation: slideIn 0.8s ease-in-out forwards;
-}
-
-/* Correctly sequence animations */
-.section:nth-of-type(1) { animation-delay: 0.2s; }
-.section:nth-of-type(2) { animation-delay: 0.4s; }
-.section:nth-of-type(3) { animation-delay: 0.6s; }
-.section:nth-of-type(4) { animation-delay: 0.8s; }
-.section:nth-of-type(5) { animation-delay: 1s; }
-
         body {
-            font: initial;
+            font-family: initial;
             margin: 0;
             padding: 0;
             background-color: #000;
@@ -103,18 +19,16 @@ body {
             padding: 30px;
             box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            border-left: 5px solid #fff;
+            border-left: 5px solid white;
         }
         .header {
             text-align: center;
             padding-bottom: 20px;
-            border-bottom: 3px solid #fff;
-            position: relative;
+            border-bottom: 3px solid white;
         }
         .header h1 {
             margin: 0;
             font-size: 36px;
-            color: #fff;
         }
         .contact-info {
             font-size: 16px;
@@ -125,15 +39,28 @@ body {
             margin: 30px 0;
             padding: 20px;
             background: #222;
-            border-left: 4px solid #fff;
+            border-left: 4px solid white;
             border-radius: 8px;
-            position: relative;
             cursor: pointer;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideIn 0.8s ease-in-out forwards;
         }
-        .section h2 {
-            color: #fff;
-            font-size: 24px;
-            margin-bottom: 10px;
+        .section:nth-of-type(1) { animation-delay: 0.2s; }
+        .section:nth-of-type(2) { animation-delay: 0.4s; }
+        .section:nth-of-type(3) { animation-delay: 0.6s; }
+        .section:nth-of-type(4) { animation-delay: 0.8s; }
+        .section:nth-of-type(5) { animation-delay: 1s; }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         .popup {
             max-height: 0;
@@ -143,26 +70,33 @@ body {
             box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             padding: 0 15px;
-            color: #fff;
         }
-        .popup p {
+        .popup p { margin: 0; padding: 10px 0; }
+        .skills ul {
+            list-style: none;
+            padding: 0;
             margin: 0;
-            padding: 10px 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .skills li {
+            background: #444;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sections = document.querySelectorAll(".section");
-            
-            sections.forEach(section => {
-                section.addEventListener("mouseenter", function () {
-                    const popup = this.querySelector(".popup");
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".section").forEach(section => {
+                section.addEventListener("mouseenter", () => {
+                    let popup = section.querySelector(".popup");
                     popup.style.maxHeight = popup.scrollHeight + "px";
                     popup.style.padding = "15px";
                 });
-                
-                section.addEventListener("mouseleave", function () {
-                    const popup = this.querySelector(".popup");
+                section.addEventListener("mouseleave", () => {
+                    let popup = section.querySelector(".popup");
                     popup.style.maxHeight = "0";
                     popup.style.padding = "0 15px";
                 });
@@ -186,7 +120,7 @@ body {
             <h2>Experience</h2>
             <div class="popup">
                 <p><strong>Customer Support Executive</strong> - D'soft Infotech Pvt. Ltd. (Sep, 2023 - July, 2024)</p>
-                <p>Improved communication skills led to increased customer satisfaction by effectively addressing their queries, strengthening the relationship between the customer and the company.</p>
+                <p>Improved communication skills led to increased customer satisfaction by effectively addressing their queries.</p>
                 <p><strong>Quality Analyst</strong> - D'soft Infotech Pvt. Ltd. (July, 2024 - Present)</p>
                 <p>Performed software testing, identified bugs, and collaborated with developers to enhance product quality.</p>
             </div>
@@ -200,12 +134,14 @@ body {
         <div class="section">
             <h2>Skills</h2>
             <div class="popup skills">
-                <p><span class="skill">Communication</span>
-                <span class="skill">Logical Reasoning</span>
-                <span class="skill">Manual Testing</span>
-                <span class="skill">Analytical Skills</span>
-                <span class="skill">Problem Solving</span>
-                <span class="skill">Attention to Detail</span></p>
+                <ul>
+                    <li>Communication</li>
+                    <li>Logical Reasoning</li>
+                    <li>Manual Testing</li>
+                    <li>Analytical Skills</li>
+                    <li>Problem Solving</li>
+                    <li>Attention to Detail</li>
+                </ul>
             </div>
         </div>
         <div class="section">
@@ -216,7 +152,7 @@ body {
                 <p><strong>Gender</strong> - Male</p>
                 <p><strong>Place of Birth</strong> - Amreli, Gujarat</p>
                 <p><strong>Nationality</strong> - Indian</p>
-                <p><strong>Language Known</strong> - Gujarati - Hindi - English</p>
+                <p><strong>Languages Known</strong> - Gujarati, Hindi, English</p>
             </div>
         </div>
     </div>
